@@ -15,7 +15,7 @@ public class TheGridSearch {
         int pLength = P[0].length();
 
         int i = 0;
-        while ( i < G.length - P.length ) {
+        while ( i < G.length - P.length + 1) {
             int index = G[i].indexOf(P[0]);
             if ( index != -1 ) {
                 int j = 1;
@@ -39,10 +39,42 @@ public class TheGridSearch {
 
         return output;
     }
+//
+    /*
+    import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
 
-    private static final Scanner scanner = new Scanner(System.in);
+public class ReadFile {
+  public static void main(String[] args) {
+    try {
+      File myObj = new File("filename.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        System.out.println(data);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+}*/
+
+    // private static final Scanner scanner = new Scanner(System.in);
+    // private static final Scanner scanner = new Scanner(new FileReader("filename.txt"));
+    private static Scanner scanner = null;
 
     public static void main(String[] args) throws IOException {
+
+        try {
+            scanner = new Scanner( new File("input.txt") );
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int t = scanner.nextInt();
