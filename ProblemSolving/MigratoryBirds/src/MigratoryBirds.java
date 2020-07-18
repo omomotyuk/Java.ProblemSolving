@@ -15,8 +15,25 @@ public class MigratoryBirds {
     // Complete the migratoryBirds function below.
     static int migratoryBirds(List<Integer> arr) {
 
+        long[] spotted = new long[6];
 
-        return 0;
+        for (Integer bird : arr) {
+            spotted[bird]++;
+        }
+
+        int index = 0;
+        long max = spotted[0];
+
+        for (int i = 1; i < 6; i++) {
+            if (max < spotted[i]) {
+                index = i;
+                max = spotted[i];
+            }
+        }
+
+        System.out.println(index);
+
+        return index;
     }
 
     public static void main(String[] args) throws IOException {
