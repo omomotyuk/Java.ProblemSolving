@@ -1,10 +1,10 @@
 import java.io.*;
-        import java.math.*;
-        import java.security.*;
-        import java.text.*;
-        import java.util.*;
-        import java.util.concurrent.*;
-        import java.util.regex.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
 public class TheGridSearch {
 
@@ -15,21 +15,24 @@ public class TheGridSearch {
         int pLength = P[0].length();
 
         int i = 0;
-        while ( i < G.length - P.length + 1) {
-            int index = G[i].indexOf(P[0]);
-            if ( index != -1 ) {
-                int j = 1;
-                while (j < P.length) {
-                    if ( P[j].equals(G[i + j].substring(index, index + pLength)) == false ) {
+        while (i < G.length - P.length + 1) {
+            int index = -1;
+            do {
+                index = G[i].indexOf(P[0], ++index);
+                if (index != -1) {
+                    int j = 1;
+                    while (j < P.length) {
+                        if (P[j].equals(G[i + j].substring(index, index + pLength)) == false) {
+                            break;
+                        }
+                        j++;
+                    }
+                    if (j == P.length) {
+                        check = true;
                         break;
                     }
-                    j++;
                 }
-                if (j == P.length) {
-                    check = true;
-                    break;
-                }
-            }
+            } while (index != -1 && check == false);
             i++;
         }
 
@@ -62,18 +65,18 @@ public class ReadFile {
   }
 }*/
 
-    // private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     // private static final Scanner scanner = new Scanner(new FileReader("filename.txt"));
-    private static Scanner scanner = null;
+    // * private static Scanner scanner = null;
 
     public static void main(String[] args) throws IOException {
 
-        try {
+        /* try {
             scanner = new Scanner( new File("input.txt") );
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }
+        } */
 
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
