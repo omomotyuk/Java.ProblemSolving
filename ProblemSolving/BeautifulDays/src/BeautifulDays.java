@@ -1,23 +1,40 @@
 import java.io.*;
-        import java.math.*;
-        import java.security.*;
-        import java.text.*;
-        import java.util.*;
-        import java.util.concurrent.*;
-        import java.util.regex.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
 public class BeautifulDays {
 
     // Complete the beautifulDays function below.
     static int beautifulDays(int i, int j, int k) {
 
-        return i;
+        int beautiful = 0;
+
+        for (int number = i; number < j + 1; number++) {
+
+            String string = new StringBuffer("" + number).reverse().toString();
+
+            int reverse = Integer.parseInt(string);
+
+            //System.out.println("" + number + " " + reverse);
+
+            if (Math.abs(number - reverse) % k == 0) {
+                beautiful++;
+            }
+        }
+
+        System.out.println(beautiful);
+
+        return beautiful;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] ijk = scanner.nextLine().split(" ");
 
@@ -29,10 +46,10 @@ public class BeautifulDays {
 
         int result = beautifulDays(i, j, k);
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        //bufferedWriter.write(String.valueOf(result));
+        //bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        //bufferedWriter.close();
 
         scanner.close();
     }
