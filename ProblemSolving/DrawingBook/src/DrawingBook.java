@@ -1,8 +1,8 @@
 import java.io.*;
-        import java.math.*;
-        import java.text.*;
-        import java.util.*;
-        import java.util.regex.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
 
 public class DrawingBook {
 
@@ -14,26 +14,37 @@ public class DrawingBook {
          * Write your code here.
          */
 
-        return 0;
+        int output = 0;
+
+        if (p > 1) {
+            int front = p / 2;
+            int back = n / 2 - front;
+
+            output = front < back ? front : back;
+        }
+
+        System.out.println(output);
+
+        return output;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int n = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
 
         int p = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
 
         int result = pageCount(n, p);
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        //bufferedWriter.write(String.valueOf(result));
+        //bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        //bufferedWriter.close();
 
         scanner.close();
     }
