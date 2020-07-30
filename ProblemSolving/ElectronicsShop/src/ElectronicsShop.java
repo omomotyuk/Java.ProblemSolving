@@ -13,16 +13,48 @@ public class ElectronicsShop {
         /*
          * Write your code here.
          */
-        return 0;
+        Arrays.sort(keyboards);
+        Arrays.sort(drives);
+
+        int max = -1;
+        int sum = 0;
+
+        int i = 0;
+        int j = drives.length - 1;
+
+        while (i < keyboards.length) {
+
+            while ( (j > -1) && (keyboards[i] + drives[j] > b) ) {
+                j--;
+            }
+
+            if ( j == -1 ) {
+                return max;
+            } else {
+                sum = keyboards[i] + drives[j];
+
+                if (sum == b) {
+                    return b;
+                } else {
+                    if (max < sum) {
+                        max = sum;
+                    }
+                }
+            }
+            i++;
+        }
+
+        return max;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] bnm = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //System.out.println(Arrays.toString(bnm));
 
         int b = Integer.parseInt(bnm[0]);
 
@@ -33,7 +65,7 @@ public class ElectronicsShop {
         int[] keyboards = new int[n];
 
         String[] keyboardsItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
 
         for (int keyboardsItr = 0; keyboardsItr < n; keyboardsItr++) {
             int keyboardsItem = Integer.parseInt(keyboardsItems[keyboardsItr]);
@@ -43,7 +75,7 @@ public class ElectronicsShop {
         int[] drives = new int[m];
 
         String[] drivesItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+        //scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
 
         for (int drivesItr = 0; drivesItr < m; drivesItr++) {
             int drivesItem = Integer.parseInt(drivesItems[drivesItr]);
@@ -56,10 +88,12 @@ public class ElectronicsShop {
 
         int moneySpent = getMoneySpent(keyboards, drives, b);
 
-        bufferedWriter.write(String.valueOf(moneySpent));
-        bufferedWriter.newLine();
+        System.out.println(moneySpent);
 
-        bufferedWriter.close();
+        //bufferedWriter.write(String.valueOf(moneySpent));
+        //bufferedWriter.newLine();
+
+        //bufferedWriter.close();
 
         scanner.close();
     }
