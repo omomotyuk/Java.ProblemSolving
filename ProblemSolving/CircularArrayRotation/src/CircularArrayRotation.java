@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -12,13 +11,27 @@ public class CircularArrayRotation {
     // Complete the circularArrayRotation function below.
     static int[] circularArrayRotation(int[] a, int k, int[] queries) {
 
-        return a;
+        int length = a.length;
+        int[] r = new int[length];
+        int shift = k % length;
+
+        System.arraycopy(a, length - shift, r, 0, shift);
+        System.arraycopy(a, 0, r, shift, length - shift);
+
+        int[] output = new int[queries.length];
+        int i = 0;
+        while (i < queries.length) {
+            output[i] = r[queries[i]];
+            i++;
+        }
+
+        return output;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nkq = scanner.nextLine().split(" ");
 
@@ -48,7 +61,9 @@ public class CircularArrayRotation {
 
         int[] result = circularArrayRotation(a, k, queries);
 
-        for (int i = 0; i < result.length; i++) {
+        System.out.println(Arrays.toString(result));
+
+        /*for (int i = 0; i < result.length; i++) {
             bufferedWriter.write(String.valueOf(result[i]));
 
             if (i != result.length - 1) {
@@ -58,7 +73,7 @@ public class CircularArrayRotation {
 
         bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        bufferedWriter.close();*/
 
         scanner.close();
     }
