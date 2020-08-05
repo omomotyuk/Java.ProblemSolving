@@ -12,13 +12,32 @@ public class JumpingOnClouds {
     // Complete the jumpingOnClouds function below.
     static int jumpingOnClouds(int[] c, int k) {
 
-        return 0;
+        int jumps = 0;
+        int thunderhead = 0;
+
+        int i  = 0;
+        do {
+            while (i < c.length) {
+                if (c[i] == 1) {
+                    thunderhead++;
+                }
+                jumps++;
+                i += k;
+            }
+            i -= c.length;
+        } while (i > 0);
+
+        //System.out.println(jumps + " " + thunderhead);
+
+        int energy = 100 - (jumps + thunderhead * 2);
+
+        return energy;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nk = scanner.nextLine().split(" ");
 
@@ -38,10 +57,12 @@ public class JumpingOnClouds {
 
         int result = jumpingOnClouds(c, k);
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        System.out.println(result);
 
-        bufferedWriter.close();
+        //bufferedWriter.write(String.valueOf(result));
+        //bufferedWriter.newLine();
+
+        //bufferedWriter.close();
 
         scanner.close();
     }
