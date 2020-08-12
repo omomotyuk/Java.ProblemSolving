@@ -12,13 +12,23 @@ public class LibraryFine {
     // Complete the libraryFine function below.
     static int libraryFine(int d1, int m1, int y1, int d2, int m2, int y2) {
 
-        return 0;
+        int fine = 0;
+
+        if (y2 < y1) {
+            fine = 10_000;
+        } else if (m2 < m1) {
+            fine = (m1 - m2) * 500;
+        } else if (d2 < d1) {
+            fine = (d1 - d2) * 15;
+        }
+
+        return fine;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] d1M1Y1 = scanner.nextLine().split(" ");
 
@@ -38,10 +48,12 @@ public class LibraryFine {
 
         int result = libraryFine(d1, m1, y1, d2, m2, y2);
 
-        bufferedWriter.write(String.valueOf(result));
+        System.out.println(result);
+
+        /*bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        bufferedWriter.close();*/
 
         scanner.close();
     }
