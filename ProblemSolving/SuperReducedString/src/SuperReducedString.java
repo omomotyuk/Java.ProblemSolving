@@ -17,6 +17,30 @@ public class SuperReducedString {
     // Complete the superReducedString function below.
     static String superReducedString(String s) {
 
+        int[] n = new int[s.length()];
+        int i = 0;
+        while (i < n.length) {
+            n[i++] = 1;
+        }
+
+        int left = 0;
+        int right = 1;
+
+        do {
+            if (s.charAt(left) == s.charAt(right)) {
+                n[left] = 0;
+                n[right] = 0;
+
+                if (left > 0) {
+                    left = 0;
+                }
+            } else {
+                left = right;
+                right++;
+            }
+
+        } while (right < s.length());
+
         return "";
     }
 
