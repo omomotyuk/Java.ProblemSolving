@@ -5,11 +5,34 @@ import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
+import java.util.stream.Collectors;
 
 public class IceCreamParlor {
 
     // Complete the icecreamParlor function below.
     static int[] icecreamParlor(int m, int[] arr) {
+
+        int[] copy = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(copy);
+        int max = copy[arr.length - 1];
+
+        int[] ind = new int[max + 1];
+
+        int i = 0;
+        while (i < arr.length) {
+            ind[arr[i]] = i;
+            i++;
+        }
+
+        i = 0;
+        while (i < arr.length) {
+            if( ind[m - arr[i]] != 0) {
+                int[] ret = new int[]{ i + 1, ind[m - arr[i]] + 1};
+                Arrays.sort( ret );
+                return( ret );
+            }
+            i++;
+        }
 
         return arr;
     }
@@ -17,7 +40,7 @@ public class IceCreamParlor {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int t = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -41,7 +64,9 @@ public class IceCreamParlor {
 
             int[] result = icecreamParlor(m, arr);
 
-            for (int i = 0; i < result.length; i++) {
+            System.out.println(Arrays.toString(result));
+
+            /* for (int i = 0; i < result.length; i++) {
                 bufferedWriter.write(String.valueOf(result[i]));
 
                 if (i != result.length - 1) {
@@ -49,10 +74,10 @@ public class IceCreamParlor {
                 }
             }
 
-            bufferedWriter.newLine();
+            bufferedWriter.newLine(); */
         }
 
-        bufferedWriter.close();
+        //bufferedWriter.close();
 
         scanner.close();
     }
