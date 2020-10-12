@@ -12,24 +12,18 @@ public class IceCreamParlor {
     // Complete the icecreamParlor function below.
     static int[] icecreamParlor(int m, int[] arr) {
 
-        int[] copy = Arrays.copyOf(arr, arr.length);
-        Arrays.sort(copy);
-        int max = copy[arr.length - 1];
-
-        int[] ind = new int[max + 1];
-
         int i = 0;
         while (i < arr.length) {
-            ind[arr[i]] = i;
-            i++;
-        }
-
-        i = 0;
-        while (i < arr.length) {
-            if( ind[m - arr[i]] != 0) {
-                int[] ret = new int[]{ i + 1, ind[m - arr[i]] + 1};
-                Arrays.sort( ret );
-                return( ret );
+            if (arr[i] < m) {
+                int j = i + 1;
+                while (j < arr.length) {
+                    if (arr[i] + arr[j] == m) {
+                        int[] ret = new int[]{ i + 1, j + 1};
+                        Arrays.sort( ret );
+                        return( ret );
+                    }
+                    j++;
+                }
             }
             i++;
         }
