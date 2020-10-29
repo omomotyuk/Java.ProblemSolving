@@ -11,25 +11,31 @@ public class BigSorting {
     // Complete the bigSorting function below.
     static String[] bigSorting(String[] unsorted) {
 
-        int[] index = new int[unsorted.length];
+        int l = unsorted.length;
+        int[] index = new int[l];
 
         int i = 0;
-        while(i < index.length) {
+        while(i < l) {
             index[i] = i++;
         }
 
+        int s;
+        int il;
+        int jl;
         i = 0;
-        while (i < index.length - 1) {
+        while (i < l - 1) {
             int j = i + 1;
-            while(j < index.length) {
-                if( unsorted[index[i]].length() == unsorted[index[j]].length()) {
+            while(j < l) {
+                il = unsorted[index[i]].length();
+                jl = unsorted[index[j]].length();
+                if( il == jl ) {
                     if(unsorted[index[i]].compareTo(unsorted[index[j]]) > 0) {
-                        int s = index[i];
+                        s = index[i];
                         index[i] = index[j];
                         index[j] = s;
                     }
-                } else if (unsorted[index[i]].length() > unsorted[index[j]].length() ) {
-                    int s = index[i];
+                } else if (il > jl ) {
+                    s = index[i];
                     index[i] = index[j];
                     index[j] = s;
                 }
@@ -38,10 +44,10 @@ public class BigSorting {
             i++;
         }
 
-        String[] sorted = new String[unsorted.length];
+        String[] sorted = new String[l];
 
         i = 0;
-        while (i < unsorted.length) {
+        while (i < l) {
             sorted[i] = unsorted[index[i++]];
         }
 
