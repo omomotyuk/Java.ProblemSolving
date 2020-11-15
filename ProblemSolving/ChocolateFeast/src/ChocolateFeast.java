@@ -12,13 +12,24 @@ public class ChocolateFeast {
     // Complete the chocolateFeast function below.
     static int chocolateFeast(int n, int c, int m) {
 
+        int bars = n / c;
+        int wrappers = bars;
+        int free;
 
+        do {
+            free = wrappers / m;
+            bars += free;
+            wrappers = free + wrappers % m;
+        }
+        while (wrappers >= m);
+
+        return bars;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int t = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -34,11 +45,13 @@ public class ChocolateFeast {
 
             int result = chocolateFeast(n, c, m);
 
-            bufferedWriter.write(String.valueOf(result));
-            bufferedWriter.newLine();
+            System.out.println(result);
+
+            //bufferedWriter.write(String.valueOf(result));
+            //bufferedWriter.newLine();
         }
 
-        bufferedWriter.close();
+        //bufferedWriter.close();
 
         scanner.close();
     }
