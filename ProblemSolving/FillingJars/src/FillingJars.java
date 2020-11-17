@@ -10,13 +10,19 @@ public class FillingJars {
     // Complete the solve function below.
     static int solve(int n, int[][] operations) {
 
-        return 0;
+        long total = 0;
+        int i = 0;
+        while (i < operations.length) {
+            total += (operations[i][1] - operations[i][0] + 1) * operations[i++][2];
+        }
+
+        return (int)(total / n);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nm = scanner.nextLine().split(" ");
 
@@ -38,10 +44,12 @@ public class FillingJars {
 
         int result = solve(n, operations);
 
-        bufferedWriter.write(String.valueOf(result));
+        System.out.println(result);
+
+        /*bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        bufferedWriter.close();*/
 
         scanner.close();
     }
