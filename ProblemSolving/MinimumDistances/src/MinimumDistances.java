@@ -12,17 +12,21 @@ public class MinimumDistances {
     static int minimumDistances(int[] a) {
 
         int l = a.length;
-
+/*
         int d[][] = new int[l][l];
 
         List<Integer> values = new ArrayList<Integer>();
+
+        int index;
+        int j;
+        int dis;
 
         int i = 0;
         while (i < l) {
             if (!values.contains(a[i])) {
                 values.add(a[i]);
             } else {
-                int index = values.indexOf(a[i]);
+                index = values.indexOf(a[i]);
                 d[index][0]++;
                 d[index][d[index][0]] = i++;
             }
@@ -33,11 +37,44 @@ public class MinimumDistances {
         i = 0;
         while (i < l) {
             if (d[i][0] > 1) {
-                int j = 1;
+                j = 1;
                 while (j < d[i][0]) {
-                    int dis = d[i][j + 1] - d[i][j++];
+                    dis = d[i][j + 1] - d[i][j++];
                     if (min > dis) {
                         min = dis;
+                        if(min == 1) {
+                            return 1;
+                        }
+                    }
+                }
+            }
+            i++;
+        }
+
+        if (min == l) {
+            return -1;
+        }
+*/
+        int pos[][] = new int[l][2];
+
+        int i = 0;
+        while(i < l) {
+            pos[i][0] = a[i];
+            pos[i][1] = i++;
+        }
+
+        Arrays.sort(pos, (av, ai) -> av[0] - ai[0]);
+
+        int min = l;
+
+        i = 1;
+        while(i < l) {
+            if( pos[i - 1][0] == pos[i][0]) {
+                int val = pos[i][1] - pos[i -1][1];
+                if (min > val) {
+                    min = val;
+                    if (min == 1) {
+                        return 1;
                     }
                 }
             }
