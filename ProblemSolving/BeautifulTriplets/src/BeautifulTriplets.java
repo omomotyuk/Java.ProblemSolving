@@ -12,13 +12,42 @@ public class BeautifulTriplets {
     // Complete the beautifulTriplets function below.
     static int beautifulTriplets(int d, int[] arr) {
 
-        return 0;
+        int l = arr.length;
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int r = 0;
+
+        while (i < l - 2) {
+            System.out.println("i = " + i);
+            j = i + 1;
+            while (j < l - 1) {
+                System.out.println("j = " + j);
+                if (arr[j] - arr[i] == d) {
+                    k = j + 1;
+                    while (k < l) {
+                        System.out.println("k = " + k);
+                        if (arr[k] - arr[j] == d) {
+                            r++;
+                            System.out.println("r = " + r);
+                            break;
+                        } else {
+                            k++;
+                        }
+                    }
+                }
+                j++;
+            }
+            i++;
+        }
+
+        return r;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nd = scanner.nextLine().split(" ");
 
@@ -38,10 +67,12 @@ public class BeautifulTriplets {
 
         int result = beautifulTriplets(d, arr);
 
-        bufferedWriter.write(String.valueOf(result));
+        System.out.println(result);
+
+        /*bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
 
-        bufferedWriter.close();
+        bufferedWriter.close();*/
 
         scanner.close();
     }
